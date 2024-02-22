@@ -1,0 +1,8 @@
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: auth-service-configMap-staging
+  namespace: staging
+data:
+  SPRING_PROFILES_ACTIVE: docker
+  SPRING_DATA_MONGODB_URI: mongodb+srv://gervasioarthur:0199@auth-database.muyf4pw.mongodb.net/auth-database
