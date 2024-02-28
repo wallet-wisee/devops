@@ -30,7 +30,7 @@ metadata:
   name: documentation-service
   namespace: staging
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - port: 8080
   selector:
