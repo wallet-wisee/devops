@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: documentation-service
+  namespace: staging
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: documentation-service
+    spec:
+      containers:
+        - name: documentation-service
+          image: swaggerapi/swagger-ui:v5.11.8
+          ports:
+            - containerPort: 9090
+          env:
+            - name: VALIDATOR_URL
+              value: null
+            - name: URLS
+              value: [{name:'authentication-service',url:'http://api-gateway:8080/v1/api/auth/v3/api-docs'}]
+  selector:
+    matchLabels:
+      app: documentation-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: documentation-service
+  namespace: staging
+spec:
+  type: ClusterIP
+  ports:
+    - port: 9090
+  selector:
+    app: documentation-service

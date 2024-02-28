@@ -1,0 +1,21 @@
+variables:
+  GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+  DOCKER_TLS_CERTDIR: "/certs"
+
+image: mcr.microsoft.com/azure-cli:latest
+
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  before_script:
+    - export  IMAGE_TAG=$CI_COMMIT_SHORT_SHA
+    - az login --username $AZURE_USER --password $AZURE_PASSWORD
+  script: 
+    - az aks install-cli
+    - az account set --subscription $AKS_STAGING_CLUSTER_SUBSCRITION
+    - az aks get-credentials --resource-group $AKS_RESOURCE_GROUP --name $AKS_STAGING_CLUSTER_NAME --overwrite-existing
+    - kubectl apply -f  ./documentation-service/deployment.yml
+  only:
+    - staging
