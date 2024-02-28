@@ -14,7 +14,7 @@ spec:
         - name: documentation-service
           image: swaggerapi/swagger-ui:v5.11.8
           ports:
-            - containerPort: 9090
+            - containerPort: 8080
           env:
             - name: VALIDATOR_URL
               value: null
@@ -30,8 +30,8 @@ metadata:
   name: documentation-service
   namespace: staging
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
-    - port: 9090
+    - port: 8080
   selector:
     app: documentation-service
