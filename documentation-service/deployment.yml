@@ -19,7 +19,7 @@ spec:
             - name: VALIDATOR_URL
               value: null
             - name: URLS
-              value: "[{name:'authentication-service',url:'http://api-gateway:8080/v1/api/auth/v3/api-docs'}]"
+              value: "[{name:'authentication-service',url:'http://http://4.236.82.118:8080/v1/api/auth/v3/api-docs'}]"
   selector:
     matchLabels:
       app: documentation-service
