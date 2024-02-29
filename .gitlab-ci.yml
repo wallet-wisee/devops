@@ -19,6 +19,4 @@ deploy:
     - kubectl apply -f  ./auth-service/auth-service-config-staging.yml
     - kubectl apply -f ./documentation-service/deployment.yml
   only:
-    - staging
-  tags:
-    - deploy
+    - master
