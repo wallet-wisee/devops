@@ -20,3 +20,5 @@ deploy:
     - kubectl apply -f ./documentation-service/deployment.yml
   only:
     - staging
+  tags:
+    - deploy
