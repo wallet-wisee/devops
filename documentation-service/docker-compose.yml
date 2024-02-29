@@ -1,0 +1,10 @@
+version: "3.3"
+services:
+  documentation-service:
+    image: swaggerapi/swagger-ui:v5.11.7
+    container_name: documentation-service
+    ports:
+      - "9090:8080"
+    environment:
+      VALIDATOR_URL: null
+      URLS: "[ { name:'authentication-service',url:'http://localhost:8081/v1/api/auth/v3/api-docs'} ]"
